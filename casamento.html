@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PERSONALIZAÇÃO PARA COMPARTILHAMENTO -->
+    <meta property="og:title" content="Convite de Casamento">
+    <meta property="og:description"
+        content="Você está convidado para o nosso casamento! Junte-se a nós para celebrar este momento especial.">
+    <meta property="og:image" content="https://freesvg.org/img/wedding-rings.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.meu-convite-digital.com.br">
+    <meta property="og:locate" content="pt_BR">
+
+    <!-- IMPORTAÇÃO TAILWIND CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- ICONE DO SITE -->
+    <link rel="icon" type="image/x-icon" href="https://freesvg.org/img/wedding-rings.png">
+
+    <!-- TÍTULO DO SITE -->
+    <title>Convite de Casamento</title>
+
+    <!-- PERSONALIZAÇÃO DE PÁGINA -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Dancing+Script:wght@400..700&display=swap');
+
+        :root {
+            --cor-div-fundo: #bde7d9;
+            --borda: #7064b9;
+            --font-color: #004aad;
+            --shadow-color: #38b6ff;
+        }
+
+        body {
+            font-family: 'Dancing Script', 'Clicker Script', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white flex items-center justify-center min-h-screen p-4">
+    <div class="relative w-full max-w-5xl border-2"
+        style="background-color: var(--cor-div-fundo); border-color: var(--borda);">
+
+        <!-- FLORES -->
+        <img src="imagens/flores1.png" class="absolute top-0 left-0 w-32 sm:w-64">
+        <img src="imagens/flores2.png" class="absolute top-0 right-0 w-26 sm:w-40">
+        <img src="imagens/flores3.png" class="absolute bottom-0 left-0 w-26 sm:w-40">
+        <img src="imagens/flores4.png" class="absolute bottom-0 right-0 w-32 sm:w-64">
+
+        <!-- CONTEÚDO -->
+        <div class="relative p-6 sm:p-10 text-center">
+
+            <h1 class="text-4xl sm:text-6xl mb-6" style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                Carol e Lewis
+            </h1>
+
+            <p class="text-base sm:text-xl mb-3" style="color: var(--font-color);">
+                Com imensa alegria, Carol e Lewis te convidam para celebrar o início de uma nova vida a dois.
+            </p>
+
+            <p class="text-base sm:text-xl mb-6" style="color: var(--font-color);">
+                A cerimônia será realizada no dia 10 de agosto, às 14:00, no Salão Imperial Aurora.
+            </p>
+
+            <p class="text-lg mb-2" style="color: var(--font-color);">Faltam:</p>
+
+            <div id="contador" class="mx-auto mb-6 w-fit shadow-lg px-6 py-4 rounded-lg border-2" style="background-color: #ffffff; border-color: var(--borda);
+                box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color);">
+            </div>
+
+            <p class="text-base sm:text-xl" style="color: var(--font-color);">
+                Sua presença tornará este momento ainda mais especial.
+            </p>
+
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contador = document.getElementById('contador');
+
+            const dataCasamento = new Date('2026-08-10T14:00:00');
+            const posCasamento = new Date('2026-08-10T19:00:00');
+
+            function atualizarContador() {
+                const agora = new Date();
+
+                // DURANTE O CASAMENTO
+                if (agora >= dataCasamento && agora < posCasamento) {
+                    contador.innerHTML = `
+                <span class="text-3xl font-bold" 
+                style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                    O casamento está acontecendo! 🎉
+                </span>`;
+                    return;
+                }
+
+                // DEPOIS DO CASAMENTO
+                if (agora >= posCasamento) {
+                    contador.innerHTML = `
+                <span class="text-3xl font-bold" 
+                style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                    O casamento já aconteceu! 💙
+                </span>`;
+                    clearInterval(intervalo);
+                    return;
+                }
+
+                // ANTES DO CASAMENTO (CONTAGEM REGRESSIVA)
+                const diferenca = dataCasamento - agora;
+
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+                const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+                const segundos = Math.floor((diferenca / 1000) % 60);
+
+                contador.innerHTML = `
+            <span class="text-3xl font-bold" style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                ${dias} dias,
+            </span>
+            <span class="text-3xl font-bold" style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                ${horas} horas,
+            </span>
+            <span class="text-3xl font-bold" style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                ${minutos} minutos e
+            </span>
+            <span class="text-3xl font-bold" style="color: var(--font-color); text-shadow: #38b6ff 2px 2px;">
+                ${segundos} segundos
+            </span>
+        `;
+            }
+
+            atualizarContador();
+            const intervalo = setInterval(atualizarContador, 1000);
+        });
+
+    </script>
+</body>
+
+</html>
