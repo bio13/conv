@@ -37,10 +37,20 @@
         body {
             font-family: 'Dancing Script', 'Clicker Script', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
+
+        .fundo-elegante {
+            background-color: #ecf1f5;
+            background-image:
+                repeating-radial-gradient(circle,
+                    #fff -1px,
+                    rgb(209, 219, 219) 0px,
+                    transparent 1px,
+                    transparent 14px);
+        }
     </style>
 </head>
 
-<body class="bg-white flex items-center justify-center min-h-screen p-4">
+<body class="flex items-center justify-center min-h-screen p-4 fundo-elegante">
     <div class="relative w-full max-w-5xl border-2"
         style="background-color: var(--cor-div-fundo); border-color: var(--borda);">
 
@@ -141,7 +151,4 @@
     </script>
 </body>
 
-
 </html>
-
-
